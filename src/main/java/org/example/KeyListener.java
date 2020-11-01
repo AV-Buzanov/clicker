@@ -3,10 +3,8 @@ package org.example;
 import com.melloware.jintellitype.HotkeyListener;
 import com.melloware.jintellitype.JIntellitype;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.lang.annotation.Native;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -20,6 +18,7 @@ public class KeyListener implements HotkeyListener {
         instance.registerHotKey(2, JIntellitype.MOD_CONTROL, KeyEvent.VK_2);
         instance.registerHotKey(3, JIntellitype.MOD_CONTROL, KeyEvent.VK_3);
         instance.registerHotKey(4, JIntellitype.MOD_CONTROL, KeyEvent.VK_4);
+
         instance.addHotKeyListener(this);
     }
 
@@ -36,6 +35,7 @@ public class KeyListener implements HotkeyListener {
         } else if (i == 3) {
             if (Clicker.STOP) {
                 Clicker.STOP = false;
+                PositionHolder.resetPosition();
                 executor = Executors.newSingleThreadExecutor();
                 executor.submit(clicker);
             } else {

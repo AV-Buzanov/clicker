@@ -1,7 +1,6 @@
 package org.example;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 public class Clicker implements Runnable {
     public static boolean STOP = true;
@@ -48,10 +47,10 @@ public class Clicker implements Runnable {
         while (timer != 0 && !STOP) {
             Color pixelColor = robot.getPixelColor(PositionHolder.getStartX(), PositionHolder.getStartY());
             if (first && isBlack(pixelColor) || !first && isGreen(pixelColor)) {
-                System.out.println("start: "+ pixelColor);
+                System.out.println("start: " + pixelColor);
                 pixelColor = robot.getPixelColor(PositionHolder.getEndX(), PositionHolder.getEndY());
                 if (second && isBlack(pixelColor) || !second && isGreen(pixelColor)) {
-                    System.out.println("end: "+ pixelColor);
+                    System.out.println("end: " + pixelColor);
                     return true;
                 }
             }
@@ -64,9 +63,8 @@ public class Clicker implements Runnable {
 
     public void finalStep() {
         System.out.println("press");
-        robot.keyPress(KeyEvent.VK_CAPS_LOCK);
-        robot.keyRelease(KeyEvent.VK_CAPS_LOCK);
-        makeLatency(500);
+        InputController.pressKey(ScanCode.DIK_E, 500);
+        makeLatency(1);
     }
 
     private boolean isBlack(Color color) {

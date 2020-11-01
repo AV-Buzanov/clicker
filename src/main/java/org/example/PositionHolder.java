@@ -13,11 +13,17 @@ public class PositionHolder {
     private static int endY;
 
     static {
+        resetPosition();
+    }
+
+    public static void resetPosition() {
         int height = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
         int width = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
-        startX = (width/2) - 20;
-        startY = (height/2) - 40;
-        endX = (width/2) + 20;
+        System.out.println("height: " + height);
+        System.out.println("width: " + width);
+        startX = (width / 2) - 20;
+        startY = (height / 2) - 40;
+        endX = (width / 2) + 20;
         endY = startY;
     }
 
