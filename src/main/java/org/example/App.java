@@ -8,7 +8,7 @@ import java.awt.*;
  */
 public class App {
     public static void main(String[] args) throws InterruptedException {
-//        Window window = new Window(new Frame());
+  //        Window window = new Window(new Frame());
 //        window.setSize(200,200);
 //        window.setAlwaysOnTop(true);
 //        window.setBackground(Color.RED);

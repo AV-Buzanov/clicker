@@ -26,16 +26,30 @@ public class KeyListener implements HotkeyListener {
     public void onHotKey(int i) {
         if (i == 1) {
             PositionHolder.setStartX((int) MouseInfo.getPointerInfo().getLocation().getX());
-            PositionHolder.setStartY((int) MouseInfo.getPointerInfo().getLocation().getY());
+            PositionHolder.setStartY(     (int) MouseInfo.getPointerInfo().getLocation().getY());
             System.out.println("Pressed: " + i);
+            try {
+                System.out.println(new Robot().getPixelColor(PositionHolder.getStartX(), PositionHolder.getStartY()));
+            } catch (AWTException e) {
+                e.printStackTrace();
+            }
+
         } else if (i == 2) {
-            PositionHolder.setEndX((int) MouseInfo.getPointerInfo().getLocation().getX());
-            PositionHolder.setEndY((int) MouseInfo.getPointerInfo().getLocation().getY());
-            System.out.println("Pressed: " + i);
+
+             System.out.println("Pressed: " + i);
+            try {
+                System.out.println(new Robot().getPixelColor(PositionHolder.getEndX(), PositionHolder.getEndY()  ));
+            } catch (AWTException e) {
+                e.printStackTrace();
+            }
         } else if (i == 3) {
             if (Clicker.STOP) {
                 Clicker.STOP = false;
                 PositionHolder.resetPosition();
+                PositionHolder.setStartX(862);
+                PositionHolder.setStartY(317);
+                PositionHolder.setEndX(689);
+                PositionHolder.setEndY(264);
                 executor = Executors.newSingleThreadExecutor();
                 executor.submit(clicker);
             } else {
@@ -44,6 +58,7 @@ public class KeyListener implements HotkeyListener {
             }
         } else if (i == 4) {
             instance.cleanUp();
+            InputController.releaseKey(ScanCode.DIK_DOWN);
             System.exit(0);
         }
     }
