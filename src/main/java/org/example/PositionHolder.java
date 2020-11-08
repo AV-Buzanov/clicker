@@ -21,10 +21,15 @@ public class PositionHolder {
         int width = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
         System.out.println("height: " + height);
         System.out.println("width: " + width);
-        startX = (width / 2) - 20;
-        startY = (height / 2) - 40;
-        endX = (width / 2) + 20;
-        endY = startY;
+//        startX = (width / 2) - 10;
+//        startY = (height / 2) - 40;
+//        endX = (width / 2) + 20;
+//        endY = startY;
+        startX=1262;
+        startY=521;
+        endX=1311;
+        endY=522;
+
     }
 
     public static int getStartX() {

@@ -1,5 +1,7 @@
 package org.example;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+
 import java.awt.*;
 
 public class Clicker implements Runnable {
@@ -29,10 +31,10 @@ public class Clicker implements Runnable {
                                 System.out.println("5");
                                 if (doStep(true, false)) {
                                     System.out.println("6");
-                                    if (doStep(false, false)) {
-                                        System.out.println("final");
-                                        finalStep();
-                                    }
+//                                    if (doStep(false, false)) {
+                                    System.out.println("final");
+                                    finalStep();
+//                                    }
                                 }
                             }
                         }
@@ -43,19 +45,19 @@ public class Clicker implements Runnable {
     }
 
     public boolean doStep(boolean first, boolean second) {
-        int timer = 500;
+        int timer = 200;
         while (timer != 0 && !STOP) {
             Color pixelColor = robot.getPixelColor(PositionHolder.getStartX(), PositionHolder.getStartY());
             if (first && isBlack(pixelColor) || !first && isGreen(pixelColor)) {
-                System.out.println("start: " + pixelColor);
+//                System.out.println("start: " + pixelColor);
                 pixelColor = robot.getPixelColor(PositionHolder.getEndX(), PositionHolder.getEndY());
                 if (second && isBlack(pixelColor) || !second && isGreen(pixelColor)) {
-                    System.out.println("end: " + pixelColor);
+//                    System.out.println("end: " + pixelColor);
                     return true;
                 }
             }
             timer--;
-            makeLatency(1);
+//            makeLatency(1);
         }
         System.out.println("fuck");
         return false;
@@ -63,8 +65,10 @@ public class Clicker implements Runnable {
 
     public void finalStep() {
         System.out.println("press");
-        InputController.pressKey(ScanCode.DIK_E, 500);
-        makeLatency(1);
+        InputController.pressKey(69, 80);
+        makeLatency(6000);
+        System.out.println("press2");
+        InputController.pressKey(69, 80);
     }
 
     private boolean isBlack(Color color) {

@@ -35,21 +35,25 @@ public class InputController {
         WinUser.INPUT input = new WinUser.INPUT();
         input.type = new WinDef.DWORD(WinUser.INPUT.INPUT_KEYBOARD);
         input.input.setType("ki");
+        input.input.ki.wVk = new WinDef.WORD(key);
+
         input.input.ki.wScan = new WinDef.WORD(key);
         input.input.ki.time = new WinDef.DWORD(0);
         input.input.ki.dwExtraInfo = new BaseTSD.ULONG_PTR(0);
-        input.input.ki.dwFlags = new WinDef.DWORD(WinUser.KEYBDINPUT.KEYEVENTF_SCANCODE);
-        User32.INSTANCE.SendInput(new WinDef.DWORD(1), (WinUser.INPUT[]) input.toArray(1), input.size());
+        input.input.ki.dwFlags = new WinDef.DWORD(0);
+        System.out.println(User32.INSTANCE.SendInput(new WinDef.DWORD(1), (WinUser.INPUT[]) input.toArray(1), input.size()));
     }
 
     public static void releaseKey(int key) {
         WinUser.INPUT input = new WinUser.INPUT();
         input.type = new WinDef.DWORD(WinUser.INPUT.INPUT_KEYBOARD);
         input.input.setType("ki");
+        input.input.ki.wVk = new WinDef.WORD(key);
+
         input.input.ki.wScan = new WinDef.WORD(key);
         input.input.ki.time = new WinDef.DWORD(0);
         input.input.ki.dwExtraInfo = new BaseTSD.ULONG_PTR(0);
         input.input.ki.dwFlags = new WinDef.DWORD(WinUser.KEYBDINPUT.KEYEVENTF_KEYUP);
-        User32.INSTANCE.SendInput(new WinDef.DWORD(1), (WinUser.INPUT[]) input.toArray(1), input.size());
+        System.out.println(User32.INSTANCE.SendInput(new WinDef.DWORD(1), (WinUser.INPUT[]) input.toArray(1), input.size()));
     }
 }
